@@ -1,0 +1,7 @@
+__pycache__/
+.pyc
+lib/
+data/
+bin/
+tags
+.DS_Store
