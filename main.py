@@ -14,10 +14,20 @@ def route(action, NAVSTACK, STATE):
     )(NAVSTACK, STATE)
     return action, NAVSTACK, STATE
 
+def init():
+    try:
+        os.mkdir("./data")
+        os.mkdir("./data/summary")
+        os.mkdir("./data/pdf")
+        os.mkdir("./data/txt")
+    except:
+        pass
+
 
 if __name__ == '__main__':
     os.system('clear')
     navigable_menus.make_header('welcome to arXiv. initializing...')
+    init()
 
     NAVSTACK = [('main_menu', 'main')]
     STATE = store.Store()
