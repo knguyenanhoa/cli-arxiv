@@ -15,6 +15,9 @@ class Feed():
     def summary(self):
         raise Exception('abstract class')
 
+    def published(self):
+        raise Exception('abstract class')
+
     def clean(self, feed):
         raise Exception('abstract class')
 
@@ -66,7 +69,7 @@ class XMLFeed(Feed):
     def title(self):
         title = self.feed.find('title').text
         title = re.sub("[\.\:\[\]]", "", title)
-        return title
+        return f"{title} (Preprint)"
 
     def summary(self):
         return self.feed.find('description').text
@@ -94,10 +97,13 @@ class AtomFeed(Feed):
     def summary(self):
         return self.feed.summary.value
 
+    def published(self):
+        return self.feed.published.strftime('%Y')
+
     def title(self):
         title = self.feed.title.value
         title = re.sub("[\.\:\[\]]", "", title)
-        return title
+        return f"{title} ({self.published()})"
 
     def clean(self, feed):
         return feed

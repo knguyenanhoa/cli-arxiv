@@ -4,7 +4,6 @@ import requests
 # THESE ARE USED, DO NOT REMOVE
 # need to implement an autoloader here....
 from menus import main_menu, arxiv, search
-
 from components import navigable_menus, store
 
 def route(action, NAVSTACK, STATE):
@@ -22,7 +21,6 @@ def init():
         os.mkdir("./data/txt")
     except:
         pass
-
 
 if __name__ == '__main__':
     os.system('clear')

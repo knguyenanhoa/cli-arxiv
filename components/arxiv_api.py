@@ -29,14 +29,17 @@ def search(STATE=None):
     if STATE == None: raise Exception('You must provide STATE')
 
     if STATE.search_results == []:
-        query = input('Enter search term: ').replace(" ", "+")
+        print('Use cs:, nlin:, etc. to search sub-arxives')
+        query = input('Enter search term: ')
         if query == '':
             return [], STATE
 
         params = {
-            'search_query': "all:" + query,
+            'search_query': query,
             'start': 0,
             'max_results': 50,
+            'sortBy': 'lastUpdatedDate',
+            'sortOrder': 'descending'
         }
         query = '&'.join([str(x)+'='+str(y) for x, y in params.items()])
 
