@@ -1,10 +1,10 @@
-import sys, os, time, copy
-import requests
+import sys, os, copy
 
 # THESE ARE USED, DO NOT REMOVE
-# need to implement an autoloader here....
+# maybe implement an autoloader here....
 from menus import main_menu, arxiv, search
 from components import navigable_menus, store
+
 
 def route(action, NAVSTACK, STATE):
     action, NAVSTACK, STATE = getattr(
@@ -22,10 +22,21 @@ def init():
     except:
         pass
 
+    #check dependencies
+    try:
+        import requests, atoma
+        from pdfminer.high_level import extract_text
+        from sklearn.feature_extraction.text import TfidfVectorizer
+        import numpy as np
+    except:
+        print('dependencies not satisfied')
+
+
 if __name__ == '__main__':
+    init()
+
     os.system('clear')
     navigable_menus.make_header('welcome to arXiv. initializing...')
-    init()
 
     NAVSTACK = [('main_menu', 'main')]
     STATE = store.Store()

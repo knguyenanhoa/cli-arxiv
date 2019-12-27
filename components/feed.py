@@ -1,6 +1,8 @@
 import re, copy, sys, os, time
-from components import navigable_menus, arxiv_api
+
 from pdfminer.high_level import extract_text
+
+from components import navigable_menus, arxiv_api
 
 class Feed():
     def __new__(cls, feed):

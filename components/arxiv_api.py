@@ -1,5 +1,6 @@
-import requests, atoma
 from xml.etree import ElementTree as ET
+
+import requests, atoma
 
 from . import arxiv_api, navigable_menus, feed
 

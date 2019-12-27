@@ -1,6 +1,3 @@
-import numpy as np
-import pandas as pd
-
 from .learners import tfidf
 
 def predict(feed_items, STATE=None):
