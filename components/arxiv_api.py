@@ -26,11 +26,12 @@ def get_feed(topic=None, STATE=None):
     return feed_items, STATE
 
 def search(STATE=None):
-    #TODO: extend search query capability
     if STATE == None: raise Exception('You must provide STATE')
 
     if STATE.search_results == []:
-        print('Use cs:, nlin:, etc. to search sub-arxives')
+        print('ti:title        au:author     abs:abstract      co:comment')
+        print('jr:journal ref  cat:subj-cat  rn:report number')
+        print(' ')
         query = input('Enter search term: ')
         if query == '':
             return [], STATE
@@ -39,7 +40,7 @@ def search(STATE=None):
             'search_query': query,
             'start': 0,
             'max_results': 50,
-            'sortBy': 'lastUpdatedDate',
+            'sortBy': 'relevance',
             'sortOrder': 'descending'
         }
         query = '&'.join([str(x)+'='+str(y) for x, y in params.items()])
