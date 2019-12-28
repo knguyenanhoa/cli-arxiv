@@ -97,15 +97,24 @@ class AtomFeed(Feed):
         self.feed = feed
 
     def summary(self):
-        return self.feed.summary.value
+        return f"{self.authors()}\n\n{self.feed.summary.value}\n"
 
     def published(self):
         return self.feed.published.strftime('%Y')
 
+    def authors(self):
+        return ', '.join([author.name for author in self.feed.authors])
+
+    def title_authors(self):
+        if len(self.feed.authors) < 3:
+            return self.authors()
+        else:
+            return f"{self.feed.authors[0].name} et al"
+
     def title(self):
         title = self.feed.title.value
         title = re.sub("[\.\:\[\]]", "", title)
-        return f"{title} ({self.published()})"
+        return f"{title} ({self.title_authors()} {self.published()})"
 
     def clean(self, feed):
         return feed
