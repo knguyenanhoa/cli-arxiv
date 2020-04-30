@@ -31,6 +31,7 @@ def search(STATE=None):
     if STATE.search_results == []:
         print('ti:title        au:author     abs:abstract      co:comment')
         print('jr:journal ref  cat:subj-cat  rn:report number')
+        print('BLANK INPUT TO GO BACK')
         print(' ')
         query = input('Enter search term: ')
         if query == '':

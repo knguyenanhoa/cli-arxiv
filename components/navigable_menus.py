@@ -8,7 +8,7 @@ def make_header(text=' '):
 def error(text=' '):
     make_header('error')
     print(text)
-    time.sleep(1.5)
+    time.sleep(1)
 
 def getch():
     """

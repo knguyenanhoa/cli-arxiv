@@ -58,6 +58,7 @@ def main(NAVSTACK, STATE):
         [
             ('arxiv', 'arxiv'),
             ('search', 'search'),
+            ('man', 'man'),
         ], header='main', STATE=STATE
     )
     return action, NAVSTACK, STATE

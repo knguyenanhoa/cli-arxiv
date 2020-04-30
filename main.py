@@ -2,7 +2,7 @@ import sys, os, copy
 
 # THESE ARE USED, DO NOT REMOVE
 # maybe implement an autoloader here....
-from menus import main_menu, arxiv, search
+from menus import main_menu, arxiv, search, man
 from components import navigable_menus, store
 
 
