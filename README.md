@@ -13,7 +13,7 @@ sum ranking from the tfidf matrix is also implemented and can be switched to by
 editing the ml/main\_ml.py file (set metric="sum\_freq"). Please do add other
 algorithms as you see fit.
 
-If you'd like to use this code for any reason, please clone or fork it because
+If you'd like to alter this code for any reason, please fork it because
 I will be pushing to this repo from time to time. Cheers!
 
 # INSTALL
