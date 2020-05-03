@@ -120,6 +120,9 @@ def create(
                     page = (page - 1) % len(menu_options)
                 elif options[idx] == ('CONTROL', 'next_page'):
                     page = (page + 1) % len(menu_options)
+                elif options[idx] == ('main_menu', 'back'):
+                    #don't do any cursor calculation, just go back
+                    return ('main_menu', 'back'), STATE
                 else:
                     STATE.curr_page = page
                     STATE.curr_idx = idx

@@ -32,7 +32,7 @@ def man(NAVSTACK, STATE):
     print(' ')
     print('Navigation is vim-like')
     print('UP: k      DOWN: j      LEFT: j      RIGHT: l')
-    print('BOTTOM: G  TOP: Gj')
+    print('BOTTOM: G, J            TOP: gg, K')
     print(' ')
     print('DOWNLOAD: d (where applicable)')
     print('SELECT:   o, enter')
