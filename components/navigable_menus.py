@@ -62,22 +62,25 @@ def terminate():
     os.system('clear')
     sys.exit()
 
+def before_and_after_content(before_content=None, after_content=None):
+    def wrapper(content):
+        def wrapped_content(*args, **kw):
+            if before_content != None: print(before_content.upper())
+            result = content(*args, **kw)
+            if after_content != None: print(after_content.upper())
+            return result
+        return wrapped_content
+    return wrapper
+
 #TODO: refactor this
-def create(menu_options, header=' ', page=0, STATE=None, before_content=None):
-    if STATE == None or STATE.__class__.__name__ != 'Store':
-        raise Exception('you must provide STATE of type Store')
-    if STATE.curr_page != []:
-        page = STATE.curr_page
-    if STATE.curr_idx != []:
-        idx = STATE.curr_idx
-    else:
-        idx = 0
+def create(
+    menu_options,
+    header=' ', page=0, STATE=None,
+    before_content=None,
+    after_content=None):
 
-    while True:
-        make_header(header)
-        if before_content != None:
-            print(before_content)
-
+    @before_and_after_content(before_content, after_content)
+    def main_content(idx):
         if menu_options[0].__class__.__name__ == 'list':
             options = copy.copy(menu_options[page])
         else:
@@ -90,17 +93,27 @@ def create(menu_options, header=' ', page=0, STATE=None, before_content=None):
         ]
         [print(x) for x in display_options]
 
+        return options
+
+
+    if STATE == None or STATE.__class__.__name__ != 'Store':
+        raise Exception('you must provide STATE of type Store')
+    if STATE.curr_page != []: page = STATE.curr_page
+    idx = STATE.curr_idx if STATE.curr_idx != [] else 0
+
+    while True:
+        make_header(header)
+        options = main_content(idx)
         c = getch()
 
         # a bit of vim never hurt anyone
-        if c == 'k':
-            idx = (idx - 1) % len(options)
-        if c == 'j':
-            idx = (idx + 1) % len(options)
-        if c == 'G' or c == 'J':
-            idx = len(options) - 1
-        if c == 'K':
-            idx = 0
+        if c == 'k': idx = (idx - 1) % len(options)
+        if c == 'j': idx = (idx + 1) % len(options)
+        if c == 'G' or c == 'J': idx = len(options) - 1
+        if c == 'K': idx = 0
+        if c == 'g':
+            c = getch()
+            if c == 'g': idx = 0
         if c == '\n' or c == 'o': # submit choice
             try:
                 if options[idx] == ('CONTROL', 'previous_page'):
@@ -113,10 +126,8 @@ def create(menu_options, header=' ', page=0, STATE=None, before_content=None):
                     return options[idx], STATE
             except:
                 return options[-1], STATE
-        if c == 'q':
-            return ('main_menu', 'back'), STATE
-        if c == 'd':
-            return ('main_menu', 'download'), STATE
+        if c == 'q': return ('main_menu', 'back'), STATE
+        if c == 'd': return ('main_menu', 'download'), STATE
         if c == '\x1b': # escape char
             terminate()
 

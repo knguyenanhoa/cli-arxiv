@@ -77,11 +77,16 @@ def main(NAVSTACK, STATE):
     # refresh search results when back to main menu
     STATE.search_results = []
 
+    after_content="""
+vim-like navigation
+"""
+
     action, STATE = navigable_menus.create(
         [
             ('arxiv', 'arxiv'),
             ('search', 'search'),
             ('man', 'man'),
-        ], header='main', STATE=STATE
+        ], header='main', STATE=STATE,
+        after_content=after_content
     )
     return action, NAVSTACK, STATE
