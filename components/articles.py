@@ -1,6 +1,6 @@
 import math
 
-import navigable_menus
+from . import navigable_menus
 
 def make_article(feed_item, module):
     """
