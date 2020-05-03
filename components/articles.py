@@ -10,7 +10,7 @@ def make_article(feed_item, module):
     @navigable_menus.nav_stack
     def func(NAVSTACK, STATE):
         STATE.current_article = feed_item
-        action, STATE = create(
+        action, STATE = navigable_menus.create(
             [
                 ('main_menu', 'download'),
                 ('main_menu', 'back')
