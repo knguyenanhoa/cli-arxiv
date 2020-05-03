@@ -109,6 +109,8 @@ def create(
         # a bit of vim never hurt anyone
         if c == 'k': idx = (idx - 1) % len(options)
         if c == 'j': idx = (idx + 1) % len(options)
+        if c == 'h': page = (page - 1) % len(options)
+        if c == 'l': page = (page + 1) % len(options)
         if c == 'G' or c == 'J': idx = len(options) - 1
         if c == 'K': idx = 0
         if c == 'g':
@@ -117,9 +119,9 @@ def create(
         if c in ['\n', 'o']: # submit choice
             try:
                 if options[idx] == ('CONTROL', 'previous_page'):
-                    page = (page - 1) % len(menu_options)
+                    page = (page - 1) % len(options)
                 elif options[idx] == ('CONTROL', 'next_page'):
-                    page = (page + 1) % len(menu_options)
+                    page = (page + 1) % len(options)
                 elif options[idx] == ('main_menu', 'back'):
                     #don't do any cursor calculation, just go back
                     return ('main_menu', 'back'), STATE
