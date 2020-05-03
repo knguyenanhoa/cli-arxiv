@@ -78,7 +78,7 @@ def main(NAVSTACK, STATE):
     STATE.search_results = []
 
     after_content="""
-vim-like navigation
+note: vim-like nav
 """
 
     action, STATE = navigable_menus.create(

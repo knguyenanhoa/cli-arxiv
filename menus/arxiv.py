@@ -26,6 +26,8 @@ import sys, time, os, copy
 from components import navigable_menus, arxiv_api, articles
 from ml import main_ml
 
+#TODO: split this up into submenu files maybe
+
 @navigable_menus.nav_stack
 def arxiv(NAVSTACK, STATE):
     action, STATE = navigable_menus.create(
