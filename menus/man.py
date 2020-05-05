@@ -31,7 +31,7 @@ def man(NAVSTACK, STATE):
     navigable_menus.make_header('main >> help')
     print(' ')
     print('Navigation is vim-like')
-    print('UP: k      DOWN: j      LEFT: h      RIGHT: l')
+    print('UP: k      DOWN: j      LEFT: j      RIGHT: l')
     print('BOTTOM: G, J            TOP: gg, K')
     print(' ')
     print('DOWNLOAD: d (where applicable)')
