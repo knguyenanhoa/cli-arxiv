@@ -48,6 +48,13 @@ def get_feed(topic=None, STATE=None):
     feed_items = [feed.Feed(f) for f in feed_items]
     return feed_items, STATE
 
+def parse_search_query(query):
+    query = query.replace(' ', '+')
+    query = query.replace('(', '%28')
+    query = query.replace(')', '%29')
+
+    return query
+
 def search(STATE=None):
     if STATE == None: raise Exception('You must provide STATE')
 
@@ -56,6 +63,7 @@ def search(STATE=None):
         if query == '':
             return [], STATE
 
+        query = parse_search_query(query)
         params = {
             'search_query': query,
             'start': 0,

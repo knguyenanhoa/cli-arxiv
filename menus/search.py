@@ -27,11 +27,17 @@ from components import navigable_menus, arxiv_api, articles
 
 @navigable_menus.nav_stack
 def search(NAVSTACK, STATE):
+    instructions = """
+ti:title        au:author     abs:abstract      co:comment
+jr:journal ref  cat:subj-cat  rn:report number
+BLANK INPUT TO GO BACK')
+
+Eg: au:julius caesar AND (ti:black holes OR ti:something else)
+AND, OR, ANDNOT operaters are case sensitive
+"""
+
     navigable_menus.make_header('main >> search')
-    print('ti:title        au:author     abs:abstract      co:comment')
-    print('jr:journal ref  cat:subj-cat  rn:report number')
-    print('BLANK INPUT TO GO BACK')
-    print(' ')
+    print(instructions)
     search_results, STATE = arxiv_api.search(STATE)
     if search_results == []:
         navigable_menus.error('no results found or query empty')
