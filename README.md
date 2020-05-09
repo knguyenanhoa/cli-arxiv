@@ -38,3 +38,7 @@ python main.py
 - This script hits the arXiv web API to function so please do not alter it to
   spam the arXiv site (though I don't think one can meaningfully impact
   their servers with this). I take no responsibiltiy for its misuse.
+
+# TODO
+- ML should store learnt model somewhere to use later
+- Recommended articles should display rank metric somewhere?

@@ -24,7 +24,7 @@ Author contactable at k<dot>nguyen<dot>an<dot>hoa<at>gmail<dot>com
 class BaseLearner():
     def __init__(self, repo_path, learner):
         self.repo_path = repo_path
-        self.instance = learner
+        self.learner = learner
         self.model = None
 
     def fit(self):

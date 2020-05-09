@@ -57,7 +57,7 @@ class Tfidf(base_learner.BaseLearner):
         data = [' '.join(document) for document in data]
 
         try:
-            X = self.instance.fit_transform(data).toarray()
+            X = self.learner.fit_transform(data).toarray()
         except:
             raise Exception('no summaries detected (check summary folder)')
 
@@ -68,13 +68,13 @@ class Tfidf(base_learner.BaseLearner):
         self.fit_from_db()
         feed_scores = []
         for feed, text in test_data:
-            test_tokens = self.instance.build_tokenizer()(text)
+            test_tokens = self.learner.build_tokenizer()(text)
             test_tokens = [token for token in test_tokens if len(token) > 1]
             sum_freq_score = max([
                 sum([
                     doc[
-                        self.instance.vocabulary_.get(token)
-                    ] for token in test_tokens if self.instance.vocabulary_.get(token) != None
+                        self.learner.vocabulary_.get(token)
+                    ] for token in test_tokens if self.learner.vocabulary_.get(token) != None
                 ]) for doc in self.model
             ])
             feed_scores += [(feed, sum_freq_score)]
@@ -91,7 +91,7 @@ class Tfidf(base_learner.BaseLearner):
         data = [' '.join(document) for document in data]
 
         try:
-            X = self.instance.fit_transform(data).toarray()
+            X = self.learner.fit_transform(data).toarray()
         except:
             raise Exception('no summaries detected (check summary folder)')
 
@@ -112,7 +112,7 @@ class Tfidf(base_learner.BaseLearner):
             test_data_lengths.reshape(test_data_lengths.shape[0],1),
             model_data_lengths.reshape(1, model_data_lengths.shape[0])
         )
-        scores = scores * 1/mat_lengths.transpose()
+        scores *= 1/mat_lengths.transpose()
         # ordering doesn't matter
         #gets best n results
         n = 5
