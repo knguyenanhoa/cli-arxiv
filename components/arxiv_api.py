@@ -34,6 +34,8 @@ def rss():
     return 'http://arxiv.org/rss/'
 
 def get_feed(topic=None, STATE=None):
+    print(' ')
+    print('STANDBY...')
     if topic == None: raise Exception('you must provide an arxiv topic')
     if STATE == None: raise Exception('you must provide STATE')
 
