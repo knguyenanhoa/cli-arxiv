@@ -55,7 +55,7 @@ def new_cs(NAVSTACK, STATE):
         feed_items, STATE = arxiv_api.get_feed(topic='cs', STATE=STATE)
     except:
         navigable_menus.error('request timed out. standby...')
-        return ('main_menu', 'do_nothing'), NAVSTACK, STATE
+        return ('main_menu', 'back'), NAVSTACK, STATE
 
     ar = articles.make(feed_items, sys.modules[__name__])
     ar = articles.paginate(
@@ -79,7 +79,7 @@ def new_physics(NAVSTACK, STATE):
         feed_items, STATE = arxiv_api.get_feed(topic='physics', STATE=STATE)
     except:
         navigable_menus.error('request timed out. standby...')
-        return ('main_menu', 'do_nothing'), NAVSTACK, STATE
+        return ('main_menu', 'back'), NAVSTACK, STATE
 
     ar = articles.make(feed_items, sys.modules[__name__])
     ar = articles.paginate(
@@ -104,7 +104,7 @@ def new_q_bio(NAVSTACK, STATE):
         feed_items, STATE = arxiv_api.get_feed(topic='q-bio', STATE=STATE)
     except:
         navigable_menus.error('request timed out. standby...')
-        return ('main_menu', 'do_nothing'), NAVSTACK, STATE
+        return ('main_menu', 'back'), NAVSTACK, STATE
 
     ar = articles.make(feed_items, sys.modules[__name__])
     ar = articles.paginate(
@@ -129,7 +129,7 @@ def new_math(NAVSTACK, STATE):
         feed_items, STATE = arxiv_api.get_feed(topic='math', STATE=STATE)
     except:
         navigable_menus.error('request timed out. standby...')
-        return ('main_menu', 'do_nothing'), NAVSTACK, STATE
+        return ('main_menu', 'back'), NAVSTACK, STATE
 
     ar = articles.make(feed_items, sys.modules[__name__])
     ar = articles.paginate(
@@ -154,7 +154,7 @@ def new_non_linear_math(NAVSTACK, STATE):
         feed_items, STATE = arxiv_api.get_feed(topic='nlin', STATE=STATE)
     except:
         navigable_menus.error('request timed out. standby...')
-        return ('main_menu', 'do_nothing'), NAVSTACK, STATE
+        return ('main_menu', 'back'), NAVSTACK, STATE
 
     ar = articles.make(feed_items, sys.modules[__name__])
     ar = articles.paginate(
@@ -208,7 +208,7 @@ def recommended_cs(NAVSTACK, STATE):
         navigable_menus.error(
             'request timed out or prediction algorithms have failed. standby...'
         )
-        return ('main_menu', 'do_nothing'), NAVSTACK, STATE
+        return ('main_menu', 'back'), NAVSTACK, STATE
 
     ar = articles.make(feed_items, sys.modules[__name__])
     ar = articles.paginate(
@@ -238,7 +238,7 @@ def recommended_physics(NAVSTACK, STATE):
         navigable_menus.error(
             'request timed out or prediction algorithms have failed. standby...'
         )
-        return ('main_menu', 'do_nothing'), NAVSTACK, STATE
+        return ('main_menu', 'back'), NAVSTACK, STATE
 
     ar = articles.make(feed_items, sys.modules[__name__])
     ar = articles.paginate(
@@ -268,7 +268,7 @@ def recommended_q_bio(NAVSTACK, STATE):
         navigable_menus.error(
             'request timed out or prediction algorithms have failed. standby...'
         )
-        return ('main_menu', 'do_nothing'), NAVSTACK, STATE
+        return ('main_menu', 'back'), NAVSTACK, STATE
 
     ar = articles.make(feed_items, sys.modules[__name__])
     ar = articles.paginate(
@@ -298,7 +298,7 @@ def recommended_math(NAVSTACK, STATE):
         navigable_menus.error(
             'request timed out or prediction algorithms have failed. standby...'
         )
-        return ('main_menu', 'do_nothing'), NAVSTACK, STATE
+        return ('main_menu', 'back'), NAVSTACK, STATE
 
     ar = articles.make(feed_items, sys.modules[__name__])
     ar = articles.paginate(
@@ -328,7 +328,7 @@ def recommended_non_linear_math(NAVSTACK, STATE):
         navigable_menus.error(
             'request timed out or prediction algorithms have failed. standby...'
         )
-        return ('main_menu', 'do_nothing'), NAVSTACK, STATE
+        return ('main_menu', 'back'), NAVSTACK, STATE
 
     ar = articles.make(feed_items, sys.modules[__name__])
     ar = articles.paginate(
