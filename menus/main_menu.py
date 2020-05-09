@@ -83,7 +83,8 @@ note: vim-like nav
 
     action, STATE = navigable_menus.create(
         [
-            ('arxiv', 'arxiv'),
+            ('arxiv', 'new'),
+            ('arxiv', 'recommended'),
             ('search', 'search'),
             ('man', 'man'),
         ], header='main', STATE=STATE,

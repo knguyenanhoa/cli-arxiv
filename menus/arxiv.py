@@ -28,24 +28,11 @@ from ml import main_ml
 
 #TODO: split this up into submenu files maybe
 
-@navigable_menus.nav_stack
-def arxiv(NAVSTACK, STATE):
-    action, STATE = navigable_menus.create(
-        [
-            ('arxiv', 'new_articles'),
-            ('arxiv', 'recommended'),
-            ('main_menu', 'back'),
-            ('main_menu', 'back_to_main')
-        ], header='main >> arxiv', STATE=STATE
-    )
-    return action, NAVSTACK, STATE
-
-
 ##########################################################################
 # NEW ARTICLE MENUS
 
 @navigable_menus.nav_stack
-def new_articles(NAVSTACK, STATE):
+def new(NAVSTACK, STATE):
     categories = [
         ('arxiv', 'new_cs'),
         ('arxiv', 'new_physics'),
