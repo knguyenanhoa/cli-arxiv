@@ -45,7 +45,8 @@ def make_article(feed_item, module):
         return action, NAVSTACK, STATE
 
     # i sincerely hope this doesn't break at some point
-    func.__name__ = f"_{feed_item.title()}"
+    assert 'score' in feed_item.__dict__
+    func.__name__ = f"_({feed_item.score}) {feed_item.title()}"
     setattr(module, func.__name__, func)
     return func.__name__
 

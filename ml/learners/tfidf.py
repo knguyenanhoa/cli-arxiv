@@ -113,12 +113,30 @@ class Tfidf(base_learner.BaseLearner):
             model_data_lengths.reshape(1, model_data_lengths.shape[0])
         )
         scores *= 1/mat_lengths.transpose()
-        # ordering doesn't matter
-        #gets best n results
+
+        #gets best n matches for each train article
         n = 5
-        indices = np.unique(np.argpartition(scores, -n, axis=1)[:,-n:].flatten())
-        best = np.array(test_data)[indices].tolist()
-        return [feed for feed, text in best]
+        #ordering doesn't matter so argpartition is enough
+        indices = np.argpartition(scores, -n, axis=1)[:,-n:]
+
+        #compute overall relevance and normalize to 100
+        ag_scores = scores.sum(axis=0)
+        ag_scores = (((ag_scores / ag_scores[0]))*100).astype(int)
+        uniq_indices = np.unique(indices.flatten())
+
+        #all best matches <= [n x number of train] articles
+        #an article can be best matched to more than 1 train article
+        best = np.array(test_data)[uniq_indices].tolist()
+        best_scores = ag_scores[uniq_indices].tolist()
+
+        def add_score(obj, score):
+            obj.score = score
+            return obj
+
+        return sorted(
+            [add_score(feed[0], score) for feed, score in zip(best,
+                best_scores)], key=lambda x: x.score, reverse=True
+        )
 
     def predict(self, test_data, metric='sum_freq'):
         if metric == 'sum_freq':
