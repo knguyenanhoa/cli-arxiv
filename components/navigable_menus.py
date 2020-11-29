@@ -136,14 +136,14 @@ def create(
         if c == '\x1b': # escape char
             terminate()
 
-def nav_stack(func):
+def nav_stack(menu_item):
     """
-    decorator to increment navigation stack.
-    must decorate most menu routes if these implement the back function
+    decorator to support navigation stack.
+    must decorate most menus if these implement the back function
     """
-    def new_func(s, st):
-        a, _, _ = func(s, st)
-        s += [a]
-        return a, s, st
-    return new_func
+    def menu_item_with_nav_stack_support(stack, state):
+        action, _, _ = menu_item(stack, state)
+        stack += [action]
+        return action, stack, state
+    return menu_item_with_nav_stack_support
 
