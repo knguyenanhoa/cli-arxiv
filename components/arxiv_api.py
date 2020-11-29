@@ -48,6 +48,7 @@ def get_feed(topic=None, STATE=None):
         feed_items = getattr(STATE, topic)
 
     feed_items = [feed.Feed(f) for f in feed_items]
+    if feed_items == []: navigable_menus.error('No feed found (server could be down)')
     return feed_items, STATE
 
 def parse_search_query(query):
