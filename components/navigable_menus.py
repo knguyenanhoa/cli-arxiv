@@ -82,7 +82,10 @@ def create(
     @before_and_after_content(before_content, after_content)
     def main_content(idx):
         if menu_options[0].__class__.__name__ == 'list':
-            options = copy.copy(menu_options[page])
+            try:
+                options = copy.copy(menu_options[page])
+            except:
+                options = copy.copy(menu_options[0])
         else:
             options = copy.copy(menu_options)
         if len(options)-1 < idx: idx = len(options)-1
