@@ -43,6 +43,7 @@ def init():
         os.mkdir("./data/summary")
         os.mkdir("./data/pdf")
         os.mkdir("./data/txt")
+        os.mkdir("./to-read") #put things to read in here
     except:
         pass
 

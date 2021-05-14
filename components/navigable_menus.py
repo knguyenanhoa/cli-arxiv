@@ -65,9 +65,9 @@ def terminate():
 def before_and_after_content(before_content=None, after_content=None):
     def wrapper(content):
         def wrapped_content(*args, **kw):
-            if before_content != None: print(before_content.upper())
+            if before_content != None: print(before_content)
             result = content(*args, **kw)
-            if after_content != None: print(after_content.upper())
+            if after_content != None: print(after_content)
             return result
         return wrapped_content
     return wrapper

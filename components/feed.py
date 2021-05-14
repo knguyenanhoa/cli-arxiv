@@ -67,6 +67,8 @@ class Feed():
             pdf = arxiv_api.download(link)
             with open(f"./data/pdf/{self.title()}.pdf", 'wb') as f:
                 f.write(pdf)
+            with open(f"./data/to-read/{self.title()}.pdf", 'wb') as f:
+                f.write(pdf)
 
         if os.path.exists(f"./data/txt/{self.title()}.txt"):
             print('text file already exists. conversion halted.')
@@ -97,7 +99,7 @@ class XMLFeed(Feed):
         return f"{title} (Preprint)"
 
     def summary(self):
-        return self.feed.find('description').text
+        return self.feed.find('description').text.lower()
 
     def clean(self, feed):
         feed = feed.replace("<p>","").replace("</p>","")
@@ -120,7 +122,7 @@ class AtomFeed(Feed):
         self.feed = feed
 
     def summary(self):
-        return f"{self.authors()}\n\n{self.feed.summary.value}\n"
+        return f"{self.short_authors()}\n\n{self.feed.summary.value}\n".lower()
 
     def published(self):
         return self.feed.published.strftime('%Y')
@@ -128,7 +130,7 @@ class AtomFeed(Feed):
     def authors(self):
         return ', '.join([author.name for author in self.feed.authors])
 
-    def title_authors(self):
+    def short_authors(self):
         if len(self.feed.authors) < 3:
             return self.authors()
         else:
@@ -137,7 +139,7 @@ class AtomFeed(Feed):
     def title(self):
         title = self.feed.title.value
         title = re.sub("[\.\:\[\]]", "", title)
-        return f"{title} ({self.title_authors()} {self.published()})"
+        return f"{title} ({self.short_authors()} {self.published()})"
 
     def clean(self, feed):
         return feed
