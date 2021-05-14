@@ -40,7 +40,7 @@ def get_feed(topic=None, STATE=None):
     if STATE == None: raise Exception('you must provide STATE')
 
     if getattr(STATE, topic) == []:
-        r = requests.get(f"{arxiv_api.rss()}{topic}?version=2.0&mirror=in", timeout=10)
+        r = requests.get(f"{arxiv_api.rss()}{topic}?version=2.0", timeout=10)
         root = ET.fromstring(r.content)
         feed_items = root.find('channel').findall('item')
         setattr(STATE, topic, feed_items)
