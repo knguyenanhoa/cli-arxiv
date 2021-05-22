@@ -139,7 +139,5 @@ class Tfidf(base_learner.BaseLearner):
         )
 
     def predict(self, test_data, metric='sum_freq'):
-        if metric == 'sum_freq':
-            return self.predict_sum_freq(test_data)
-        if metric == 'cos_similarity':
-            return self.predict_cos_similarity(test_data)
+        if metric == 'sum_freq': return self.predict_sum_freq(test_data)
+        if metric == 'cos_similarity': return self.predict_cos_similarity(test_data)
