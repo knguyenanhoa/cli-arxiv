@@ -1,6 +1,6 @@
 numpy
 pandas
-sklearn
+scikit-learn
 torch
 torchvision
 requests
