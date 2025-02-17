@@ -31,7 +31,7 @@ def endpoint():
     return "http://export.arxiv.org/api/query?"
 
 def rss():
-    return 'http://arxiv.org/rss/'
+    return 'http://rss.arxiv.org/rss/'
 
 def get_feed(topic=None, STATE=None):
     print(' ')
@@ -40,7 +40,7 @@ def get_feed(topic=None, STATE=None):
     if STATE == None: raise Exception('you must provide STATE')
 
     if getattr(STATE, topic) == []:
-        r = requests.get(f"{arxiv_api.rss()}{topic}?version=2.0", timeout=10)
+        r = requests.get(f"{arxiv_api.rss()}{topic}", timeout=10)
         root = ET.fromstring(r.content)
         feed_items = root.find('channel').findall('item')
         setattr(STATE, topic, feed_items)
@@ -48,7 +48,7 @@ def get_feed(topic=None, STATE=None):
         feed_items = getattr(STATE, topic)
 
     feed_items = [feed.Feed(f) for f in feed_items]
-    if feed_items == []: navigable_menus.error('No feed found (server could be down)')
+    if feed_items == []: navigable_menus.error('No feed found (server could be down, or it is Sat/Sun)')
     return feed_items, STATE
 
 def parse_search_query(query):
