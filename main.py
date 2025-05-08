@@ -22,7 +22,7 @@ Author contactable at k<dot>nguyen<dot>an<dot>hoa<at>gmail<dot>com
 """
 
 
-import sys, os, copy
+import sys, os, copy, atexit
 
 # THESE ARE USED, DO NOT REMOVE
 # maybe implement an autoloader here....
@@ -38,6 +38,17 @@ def route(action, NAVSTACK, STATE):
     return action, NAVSTACK, STATE
 
 def init():
+    def switch_screen(name='MAIN'):
+        screens = {
+            "ALT": "\x1b[?1049h",
+            "MAIN": "\x1b[?1049l"
+        }
+        sys.stdout.write(screens[name])
+        sys.stdout.flush()
+
+    atexit.register(switch_screen, 'MAIN')
+    switch_screen('ALT')
+
     try:
         os.mkdir("./data")
         os.mkdir("./data/summary")
